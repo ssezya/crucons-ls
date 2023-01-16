@@ -1,15 +1,14 @@
 {
     "compilerOptions": {
-        "target": "esnext",
-        "baseUrl": "./src",
+        "target": "es5",
+        "baseUrl": ".",
         "jsx": "react",
         "paths": {
-            "@components/*": ["./components/*"],
-            "@services/*": ["./services/*"],
-            "@store/*": ["./store/*"],
-            "@utils/*": ["./utils/*"],
-            "@views/*": ["./views/*"]
+            "@components/*": ["./src/components/*"],
+            "@services/*": ["./src/services/*"],
+            "@store/*": ["./src/store/*"],
+            "@utils/*": ["./src/utils/*"],
+            "@views/*": ["./src/views/*"]
         }
-    },
-    "exclude": ["node_modules", "**/node_modules/*", "build"]
-  }
+    }
+}
