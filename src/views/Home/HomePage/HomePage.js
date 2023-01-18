@@ -1,8 +1,7 @@
 import React from 'react';
-import { NavBar } from '@components/layout';
 
-export const HomePage = () => {
-    <React.Fragment>
-        <NavBar />
-    </React.Fragment>
-};
+export const HomePage = () => (
+    <>
+        Home page
+    </>
+);

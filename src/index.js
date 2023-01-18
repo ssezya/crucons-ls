@@ -1,9 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Application } from './Application';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+import { store } from '@store';
+import Application from './Application';
+
+const rootNode = document.getElementById('root');
+ReactDOM.createRoot(rootNode).render(
     <React.StrictMode>
-        <Application />
+        <Provider store={store}>
+            <BrowserRouter>
+                <Application />
+            </BrowserRouter>
+        </Provider>
     </React.StrictMode>
 );

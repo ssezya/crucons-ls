@@ -1,3 +1,7 @@
-import { NavBar } from './NavBar/NavBar';
+import { NavigationBar } from './NavigationBar/NavigationBar';
+import { Content } from './Content/Content';
 
-export { NavBar };
+export {
+    NavigationBar,
+    Content
+};
