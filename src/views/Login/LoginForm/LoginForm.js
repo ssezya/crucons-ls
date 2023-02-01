@@ -13,7 +13,7 @@ import {
     Button
 } from '@mui/material';
 
-import { authActions } from '@store/authentication/authentication.slice';
+import { authActions } from '@store/auth/auth.slice';
 
 export const LoginForm = () => {
     const dispatch = useDispatch();

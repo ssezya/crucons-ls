@@ -6,11 +6,11 @@ import { PrivateRoute } from '@components/routing';
 import { HomePage } from '@views/Home';
 import { LoginPage } from '@views/Login';
 
-export const Content = () => {
+export function Content() {
     return (
         <Container maxWidth={false}>
             <Routes>
-                <Route exact path='/' element={<PrivateRoute><HomePage /></PrivateRoute>} />
+                <Route exact path='/' element={<PrivateRoute component={<HomePage />} />} />
                 <Route path='/login' element={<LoginPage />} />
             </Routes>
         </Container>
