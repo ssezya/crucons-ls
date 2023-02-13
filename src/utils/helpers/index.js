@@ -1,3 +1,3 @@
-import { history } from './history.helpers';
+import { history } from './history';
 
 export { history };

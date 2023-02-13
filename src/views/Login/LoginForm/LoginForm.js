@@ -1,8 +1,6 @@
-import React from 'react';
-import {
-    useSelector,
-    useDispatch
-} from 'react-redux';
+import { useEffect, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import {
     Container,
     CssBaseline,
@@ -13,22 +11,27 @@ import {
     Button
 } from '@mui/material';
 
-import { authActions } from '@store/auth/auth.slice';
+import { login } from '@store/auth/auth.actions';
 
 export const LoginForm = () => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
-    const authUser = useSelector(s => s.auth.user);
-    const authError = useSelector(s => s.auth.error);
+    const { error, success } = useSelector(state => state.user);
 
-    const handleSubmit = event => {
+    const handleSubmit = useCallback(event => {
         event.preventDefault();
         
         const data = new FormData(event.target);
         const username = data.get('username');
         const password = data.get('password');
 
-        return dispatch(authActions.login({ username, password }));
-    };
+        return dispatch(login({ username, password }));
+    }, [ dispatch ]);
+
+    useEffect(() => {
+        if (success)
+            navigate('/');
+    }, [ success, navigate ]);
 
     return (
         <Container component='main' maxWidth='xs'>
@@ -71,7 +74,7 @@ export const LoginForm = () => {
                         Sign In
                     </Button>
                     {
-                        authError && <Typography>authError.message</Typography>
+                        error && <Typography>Auth error.</Typography>
                     }
                 </Box>
             </Box>

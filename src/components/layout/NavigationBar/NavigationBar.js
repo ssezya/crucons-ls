@@ -10,8 +10,8 @@ import {
 } from '@mui/material';
 
 export const NavigationBar = () => {
-    const { user: authUser } = useSelector(s => s.auth);
-    if (!authUser)
+    const { info } = useSelector(state => state.user);
+    if (!info)
         return null;
 
     return (

@@ -1,9 +1,6 @@
 import React from 'react';
 
-import {
-    NavigationBar,
-    Content
-} from '@components/layout';
+import { NavigationBar, Content } from '@components/layout';
 
 const Application = () => {
     return (

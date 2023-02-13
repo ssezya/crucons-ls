@@ -1,25 +1,41 @@
+import { createSlice } from '@reduxjs/toolkit';
+
 import {
-    createAsyncThunk,
-    createSlice
-} from '@reduxjs/toolkit';
+    logout,
+    login
+} from './auth.actions';
 
-import { api } from '@utils/api';
-
-const slicePrefix = 'auth';
 const initialState = {
-    isAuth: false,
-    isError: false,
+    info: null,
+    loading: false,
+    error: false,
+    success: false
 };
 
-export const login = createAsyncThunk(
-    `${slicePrefix}/login`,
-    async (username, password) => {
-        const response = await api.post('/auth/token', { username, password });
-        return response;
+const authSlice = createSlice({
+    name: 'auth',
+    initialState,
+    reducers: {
+        logout
+    },
+    extraReducers: {
+        [login.pending]: state => {
+            state.loading = true;
+            state.error = false;
+        },
+        [login.fulfilled]: (state, action) => {
+            const { data } = action.payload;
+            localStorage.setItem('accessToken', data.accessToken);
+            state.info = data;
+            state.loading = false;
+            state.error = false;
+            state.success = true;
+        },
+        [login.rejected]: state => {
+            state.loading = false;
+            state.error = true;
+        }
     }
-);
-
-export const authSlice = createSlice({
-    name: slicePrefix,
-    initialState
 });
+
+export { authSlice };
