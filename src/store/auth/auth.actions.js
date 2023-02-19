@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '@utils/api';
 
 export const logout = state => {
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem('user');
     state.info = null;
     state.loading = false;
     state.error = false;

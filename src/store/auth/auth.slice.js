@@ -6,7 +6,7 @@ import {
 } from './auth.actions';
 
 const initialState = {
-    info: null,
+    info: JSON.parse(localStorage?.getItem('user')) || null,
     loading: false,
     error: false,
     success: false
@@ -25,7 +25,7 @@ const authSlice = createSlice({
         },
         [login.fulfilled]: (state, action) => {
             const { data } = action.payload;
-            localStorage.setItem('accessToken', data.accessToken);
+            localStorage?.setItem('user', JSON.stringify(data));
             state.info = data;
             state.loading = false;
             state.error = false;

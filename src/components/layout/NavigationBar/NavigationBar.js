@@ -1,5 +1,5 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import {
     GlobalStyles,
     CssBaseline,
@@ -9,10 +9,11 @@ import {
     Button
 } from '@mui/material';
 
+import { logout } from '@store/auth/auth.actions';
+
 export const NavigationBar = () => {
-    const { info } = useSelector(state => state.user);
-    if (!info)
-        return null;
+    const dispatch = useDispatch();
+    const handleLogout = useCallback(() => dispatch(logout()), [dispatch]);
 
     return (
         <React.Fragment>
@@ -23,8 +24,8 @@ export const NavigationBar = () => {
                     <Typography variant='h6' color='inherit' noWrap sx={{ flexGrow: 1 }}>
                         Crucons
                     </Typography>
-                    <Button href='#' variant='outlined' sx={{ my: 1, mx: 1.5 }}>
-                        Login
+                    <Button href='/login' variant='outlined' sx={{ my: 1, mx: 1.5 }} onClick={() => handleLogout()}>
+                        Logout
                     </Button>
                 </Toolbar>
             </AppBar>

@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {
     Container,
@@ -15,6 +15,7 @@ import { login } from '@store/auth/auth.actions';
 
 export const LoginForm = () => {
     const navigate = useNavigate();
+    const { state } = useLocation();
     const dispatch = useDispatch();
     const { error, success } = useSelector(state => state.user);
 
@@ -30,8 +31,8 @@ export const LoginForm = () => {
 
     useEffect(() => {
         if (success)
-            navigate('/');
-    }, [ success, navigate ]);
+            navigate(state?.path || '/');
+    }, [ success, state, navigate ]);
 
     return (
         <Container component='main' maxWidth='xs'>
