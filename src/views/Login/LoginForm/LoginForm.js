@@ -1,15 +1,12 @@
 import { useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-    Container,
-    CssBaseline,
-    Box,
-    Avatar,
-    Typography,
-    TextField,
-    Button
-} from '@mui/material';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
+import { useForm, Controller } from 'react-hook-form';
+import { Form, Input, Button } from 'antd';
+
+import './LoginForm.styles.scss';
 
 import { login } from '@store/auth/auth.actions';
 
@@ -17,17 +14,22 @@ export const LoginForm = () => {
     const navigate = useNavigate();
     const { state } = useLocation();
     const dispatch = useDispatch();
-    const { error, success } = useSelector(state => state.user);
+    const { success } = useSelector(state => state.user);
 
-    const handleSubmit = useCallback(event => {
-        event.preventDefault();
-        
-        const data = new FormData(event.target);
-        const username = data.get('username');
-        const password = data.get('password');
+    const schema = Yup.object({
+        username: Yup.string().required(),
+        password: Yup.string().required()
+    }).required();
 
-        return dispatch(login({ username, password }));
-    }, [ dispatch ]);
+    const { control, handleSubmit } = useForm({
+        defaultValues: {
+            username: '',
+            password: ''
+        },
+        resolver: yupResolver(schema)
+    });
+
+    const onSubmit = data => dispatch(login(data));
 
     useEffect(() => {
         if (success)
@@ -35,50 +37,41 @@ export const LoginForm = () => {
     }, [ success, state, navigate ]);
 
     return (
-        <Container component='main' maxWidth='xs'>
-            <CssBaseline />
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    marginTop: 8,
-                    alignItems: 'center'
-                }}
-            >
-                <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}></Avatar>
-                <Typography component='h1' variant='h5'>Sign in</Typography>
-                <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
-                    <TextField
-                        required
-                        margin='normal'
-                        fullWidth
-                        id='username'
-                        label='Username'
-                        name='username'
-                        autoFocus
-                    />
-                    <TextField
-                        required
-                        margin='normal'
-                        fullWidth
-                        id='password'
-                        label='Password'
-                        name='password'
-                        type='password'
-                    />
-                    <Button
-                        type='submit'
-                        fullWidth
-                        variant='contained'
-                        sx={{ mt: 3, mb: 2 }}
-                    >
-                        Sign In
-                    </Button>
-                    {
-                        error && <Typography>Auth error.</Typography>
+        <Form onFinish={handleSubmit(onSubmit)} className='login-form'>
+            <Form.Item>
+                <Controller
+                    name='username'
+                    control={control}
+                    render={({ field }) => 
+                        <Input
+                            {...field}
+                            // prefix={<Icon type='user' style={{ color: 'rgba(0, 0, 0, .25)' }} />}
+                            name='username'
+                            placeholder='Username'
+                        />
                     }
-                </Box>
-            </Box>
-        </Container>
+                />
+            </Form.Item>
+            <Form.Item>
+                <Controller
+                    name='password'
+                    control={control}
+                    render={({ field }) => 
+                        <Input
+                            {...field}
+                            // prefix={<Icon type='user' style={{ color: 'rgba(0, 0, 0, .25)' }} />}
+                            name='password'
+                            type='password'
+                            placeholder='Password'
+                        />
+                    }
+                />
+            </Form.Item>
+            <Form.Item>
+                <Button type='primary' htmlType='submit' className='login-form-button'>
+                    Log in
+                </Button>
+            </Form.Item>
+        </Form>
     );
 };
