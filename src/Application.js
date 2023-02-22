@@ -1,16 +1,21 @@
-import React from 'react';
 import { useSelector } from 'react-redux'; 
+import { Layout } from 'antd';
 
-import { NavigationBar, Content } from '@components/layout';
+import { NavigationBar } from '@components/layout';
+import { ApplicationRoutes } from '@components/routing';
 
 const Application = () => {
     const { info } = useSelector(state => state.user);
+    if (!info)
+        return <ApplicationRoutes />
 
     return (
-        <div>
-            { info && <NavigationBar /> }
-            <Content />
-        </div>
+        <Layout>
+            <NavigationBar />
+            <Layout.Content>
+                <ApplicationRoutes />
+            </Layout.Content>
+        </Layout>
     );
 };
 

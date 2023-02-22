@@ -1,8 +1,6 @@
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { Form, Input, Button } from 'antd';
 
@@ -15,26 +13,14 @@ export const LoginForm = () => {
     const { state } = useLocation();
     const dispatch = useDispatch();
     const { success } = useSelector(state => state.user);
-
-    const schema = Yup.object({
-        username: Yup.string().required(),
-        password: Yup.string().required()
-    }).required();
-
-    const { control, handleSubmit } = useForm({
-        defaultValues: {
-            username: '',
-            password: ''
-        },
-        resolver: yupResolver(schema)
-    });
+    const { control, handleSubmit } = useForm();
 
     const onSubmit = data => dispatch(login(data));
 
     useEffect(() => {
         if (success)
             navigate(state?.path || '/');
-    }, [ success, state, navigate ]);
+    }, [success, state, navigate]);
 
     return (
         <Form onFinish={handleSubmit(onSubmit)} className='login-form'>

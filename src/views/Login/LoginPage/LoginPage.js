@@ -1,5 +1,9 @@
-import React from 'react';
-
 import { LoginForm } from '../LoginForm/LoginForm';
 
-export const LoginPage = () => <LoginForm />;
+import './LoginPage.styles.scss';
+
+export const LoginPage = () => (
+    <div className='login-page'>
+        <LoginForm />
+    </div>
+);
