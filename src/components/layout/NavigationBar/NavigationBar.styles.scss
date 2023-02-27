@@ -1,16 +1,20 @@
+$primary-background-color: #ffffff;
+$primary-border-color: #e9dede;
+
 .navigation-bar {
     padding: 0;
-    padding-inline: 16px !important;
     position: sticky;
     top: 0;
     z-index: 1;
     width: 100%;
     display: flex;
+    background: $primary-background-color !important;
+    border-bottom: 2px solid $primary-border-color;
 }
 
 .navigation-bar-logo {
     width: 120px;
     height: 30px;
     margin: 16px 20px 16px 0px;
-    background: rgba(255, 255, 255, 0.2);
+    background: $primary-border-color;
 }
