@@ -11,13 +11,11 @@ import './styles.scss';
 
 const rootNode = document.getElementById('root');
 ReactDOM.createRoot(rootNode).render(
-    <React.StrictMode>
-        <ReduxProvider store={store}>
-            <BrowserRouter>
-                <ThemeProvider theme={{ algorithm: theme.defaultAlgorithm }}>
-                    <Application />
-                </ThemeProvider>
-            </BrowserRouter>
-        </ReduxProvider>
-    </React.StrictMode>
+    <ReduxProvider store={store}>
+        <BrowserRouter>
+            <ThemeProvider theme={{ algorithm: theme.defaultAlgorithm }}>
+                <Application />
+            </ThemeProvider>
+        </BrowserRouter>
+    </ReduxProvider>
 );

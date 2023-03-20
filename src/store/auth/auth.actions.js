@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { api } from '@utils/api';
+import { getAuthToken } from '@utils/api/services/users';
 
 export const logout = state => {
     localStorage.removeItem('user');
@@ -14,7 +14,7 @@ export const login = createAsyncThunk(
     'auth/login',
     async request => {
         const { username, password } = request;
-        const response = await api.post('/auth/token', { username, password });
+        const response = await getAuthToken(username, password);
 
         return response;
     }

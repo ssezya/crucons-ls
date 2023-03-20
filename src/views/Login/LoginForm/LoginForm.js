@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import { Form, Input, Button } from 'antd';
+import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 import './LoginForm.styles.scss';
 
@@ -31,7 +32,7 @@ export const LoginForm = () => {
                     render={({ field }) => 
                         <Input
                             {...field}
-                            // prefix={<Icon type='user' style={{ color: 'rgba(0, 0, 0, .25)' }} />}
+                            prefix={<UserOutlined style={{ color: 'rgba(0, 0, 0, .25)' }} />}
                             name='username'
                             placeholder='Username'
                         />
@@ -45,7 +46,7 @@ export const LoginForm = () => {
                     render={({ field }) => 
                         <Input
                             {...field}
-                            // prefix={<Icon type='user' style={{ color: 'rgba(0, 0, 0, .25)' }} />}
+                            prefix={<LockOutlined type='user' style={{ color: 'rgba(0, 0, 0, .25)' }} />}
                             name='password'
                             type='password'
                             placeholder='Password'

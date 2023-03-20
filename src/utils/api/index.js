@@ -1,3 +1,4 @@
-import { axiosInstance } from './axios.instance';
+import { axiosPublicInstance, axiosPrivateInstance } from './axios.instance';
 
-export const api = axiosInstance;
+export const publicApi = axiosPublicInstance;
+export const privateApi = axiosPrivateInstance;
