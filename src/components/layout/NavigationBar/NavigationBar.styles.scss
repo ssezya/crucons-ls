@@ -8,13 +8,19 @@ $primary-border-color: #e9dede;
     z-index: 1;
     width: 100%;
     display: flex;
+    justify-content: space-between;
     background: $primary-background-color !important;
     border-bottom: 2px solid $primary-border-color;
 }
 
 .navigation-bar-logo {
     width: 120px;
-    height: 30px;
-    margin: 16px 20px 16px 0px;
+    height: 32px;
+    margin: 14px 20px 14px 0px;
+    border-radius: 5px;
     background: $primary-border-color;
+}
+
+.navigation-bar-user {
+    margin-top: -3px;
 }
