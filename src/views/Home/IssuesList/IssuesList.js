@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { List } from 'antd';
 
-import { getAllIssues } from '@utils/api/services/issues';
+import { getAllIssuesAsync } from '@utils/api/services/issues';
 
 import './IssuesList.styles.scss';
 
@@ -9,9 +9,8 @@ export const IssuesList = () => {
     const [initLoading, setInitLoading] = useState(true);
     const [data, setData] = useState([]);
 
-    
     useEffect(() => {
-        getAllIssues().then(response => {
+        getAllIssuesAsync().then(response => {
             const { issues } = response.data;
             setData(issues);
             setInitLoading(false);

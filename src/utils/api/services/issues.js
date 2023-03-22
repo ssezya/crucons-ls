@@ -1,3 +1,3 @@
 import { privateApi } from '@utils/api';
 
-export const getAllIssues = async () => await privateApi.get('/issues');
+export const getAllIssuesAsync = async () => await privateApi.get('/issues');

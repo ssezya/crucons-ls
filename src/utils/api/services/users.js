@@ -1,3 +1,3 @@
 import { publicApi } from '@utils/api';
 
-export const getAuthToken = async (username, password) => await publicApi.post('/auth/token', { username, password });
+export const getAuthTokenAsync = async (username, password) => await publicApi.post('/auth/token', { username, password });
