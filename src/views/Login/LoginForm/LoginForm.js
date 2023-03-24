@@ -5,9 +5,9 @@ import { useForm, Controller } from 'react-hook-form';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
-import './LoginForm.styles.scss';
-
 import { login } from '@store/auth/auth.actions';
+
+import './LoginForm.styles.scss';
 
 export const LoginForm = () => {
     const navigate = useNavigate();
