@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-export function PrivateRoute({ component }) {
+export const PrivateRoute = ({ component }) => {
     const location = useLocation();
     const { info } = useSelector(state => state.user);
 
@@ -10,4 +10,4 @@ export function PrivateRoute({ component }) {
         return <Navigate to='/login' replace state={{ path: location.pathname }} />;
 
     return component;
-}
+};
