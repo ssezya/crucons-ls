@@ -1,6 +1,7 @@
-$primary-background-color: #e9dede;
+@import '/src/styles.scss';
 
 .user-dropdown {
     cursor: pointer;
-    background-color: $primary-background-color;
+    border-radius: 6px;
+    background-color: $primary-first-color;
 }

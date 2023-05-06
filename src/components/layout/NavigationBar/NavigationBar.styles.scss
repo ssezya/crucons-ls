@@ -1,5 +1,4 @@
-$primary-background-color: #ffffff;
-$primary-border-color: #e9dede;
+@import '/src/styles.scss';
 
 .navigation-bar {
     padding: 0;
@@ -10,20 +9,20 @@ $primary-border-color: #e9dede;
     display: flex;
     justify-content: space-between;
     background: $primary-background-color !important;
-    border-bottom: 2px solid $primary-border-color;
+    border-bottom: 2px solid $primary-second-color;
 }
 
 .navigation-bar-logo {
     width: 120px;
     height: 32px;
     margin: 14px 20px 14px 0px;
-    border-radius: 5px;
-    background: $primary-border-color;
+    border-radius: 6px;
+    background: $primary-first-color;
 }
 
 .navigation-bar-tools {
     width: 100%;
-    margin-top: 14px;
+    margin: 14px 20px 14px 0px;
 }
 
 .navigation-bar-user {

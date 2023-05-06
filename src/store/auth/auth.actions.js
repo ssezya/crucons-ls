@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { getAuthTokenAsync } from '@utils/api/services/users';
 
-export const logout = state => {
+export const logout = () => {
     localStorage.removeItem('user');
 };
 

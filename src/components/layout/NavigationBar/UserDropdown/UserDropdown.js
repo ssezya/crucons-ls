@@ -28,7 +28,6 @@ export const UserDropdown = () => {
         <Dropdown
             className='user-dropdown'
             menu={{ items }}
-            trigger='click'
             placement='bottomRight'
         >
             <Avatar className='user-dropdown-avatar' shape='square' icon={<UserOutlined />} />
